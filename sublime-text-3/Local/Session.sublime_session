@@ -1,12 +1,13 @@
 {
 	"folder_history":
 	[
+		"/home/steven/dotfiles/sublime-text-3",
 		"/home/steven/Projects/Go",
 		"/home/steven/Projects/Go/Control",
 		"/home/steven/Projects/Go/Testing"
 	],
 	"last_version": 3126,
-	"last_window_id": 4,
+	"last_window_id": 5,
 	"log_indexing": false,
 	"settings":
 	{
@@ -17,6 +18,18 @@
 			{
 				"selected_items":
 				[
+					[
+						"de",
+						"deJsonify"
+					],
+					[
+						"p",
+						"Println"
+					],
+					[
+						"age",
+						"ageBeingAndMakeMackey"
+					]
 				]
 			},
 			"build_system_choices":
@@ -50,10 +63,16 @@
 			},
 			"file_history":
 			[
+				"/home/steven/Projects/Go/Funcs/variadicMultipleReturnRange.go",
+				"/home/steven/Projects/Go/HTTP/main.go",
+				"/home/steven/Projects/Go/HTTP/json.go",
+				"/home/steven/Projects/Go/DataStructures/StructsAndMethods.go",
+				"/home/steven/Projects/Go/DataStructures/Slices.go",
+				"/home/steven/Projects/Go/DataStructures/Arrays.go"
 			],
 			"find":
 			{
-				"height": 0.0
+				"height": 30.0
 			},
 			"find_in_files":
 			{
@@ -67,6 +86,7 @@
 				"case_sensitive": false,
 				"find_history":
 				[
+					"in."
 				],
 				"highlight": true,
 				"in_selection": false,
@@ -74,6 +94,7 @@
 				"regex": false,
 				"replace_history":
 				[
+					""
 				],
 				"reverse": false,
 				"show_context": true,
@@ -83,7 +104,7 @@
 			},
 			"incremental_find":
 			{
-				"height": 0.0
+				"height": 30.0
 			},
 			"input":
 			{
@@ -97,7 +118,7 @@
 			"pinned_build_system": "",
 			"replace":
 			{
-				"height": 0.0
+				"height": 56.0
 			},
 			"save_all_on_build": true,
 			"select_file":
@@ -131,7 +152,7 @@
 			"show_open_files": true,
 			"show_tabs": true,
 			"side_bar_visible": true,
-			"side_bar_width": 150.0,
+			"side_bar_width": 215.0,
 			"status_bar_visible": true,
 			"template_settings":
 			{
