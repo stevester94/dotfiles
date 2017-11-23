@@ -13,16 +13,18 @@ targets = [
 import os
 
 # Make backup dir
-os.mkdir("backup")
+os.mkdir("backups")
 
 for target in targets:
 	prompt = raw_input("link " + target[1] + "? (y/n)").rstrip()
 
 	if prompt == "y":
-		os.rename(target[0], "backup/"+target[1])
+		os.rename(target[0], "backups/"+target[1])
+		os.symlink(target[1], target[0])
+		print "Done linking " + target[1]
 	elif prompt == "n":
 		print "Skipping " + target[1]
 		continue
-	else
+	else:
 		print "Invalid input, skipping " + target[1]
 		continue
