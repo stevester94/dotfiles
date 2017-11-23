@@ -1,5 +1,7 @@
 [global_config]
 [keybindings]
+  next_tab = <Primary><Shift>Right
+  prev_tab = <Primary><Shift>Left
 [layouts]
   [[default]]
     [[[child1]]]
@@ -15,3 +17,4 @@
     background_type = transparent
     copy_on_selection = True
     cursor_color = "#aaaaaa"
+    scrollback_infinite = True
