@@ -1,0 +1,5 @@
+~/.vim
+~/.vimrc
+~/.bashrc
+~/.config/sublime-text-3
+~/.config/terminator
