@@ -1,3 +1,5 @@
-echo source /etc/bash_completion.d/git >> ~/.bashrc
-echo PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ ' >> ~/.bashrc
-echo export TERM=xterm-256color >> ~/.bashrc
+cat << 'EOF' >> ~/.bashrc
+source /etc/bash_completion.d/git >> ~/.bashrc
+export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)") \$ '
+export TERM=xterm-256color >> ~/.bashrc
+EOF
