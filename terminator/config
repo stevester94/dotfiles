@@ -1,5 +1,6 @@
 [global_config]
 [keybindings]
+  new_tab = <Primary>t
   next_tab = <Primary><Shift>Right
   prev_tab = <Primary><Shift>Left
 [layouts]
