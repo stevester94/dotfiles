@@ -118,4 +118,6 @@ if ! shopt -oq posix; then
 fi
 
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/steven/bin
 export TERM=xterm-256color
+alias python=python3
