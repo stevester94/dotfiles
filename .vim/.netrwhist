@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/steven/dotfiles'
 let g:netrw_dirhist_2='/home/steven/Projects/WekanTrelloSync/src/card'
 let g:netrw_dirhist_3='/home/steven/Projects/WekanTrelloSync/src'
 let g:netrw_dirhist_4='/home/steven/Projects/WekanTrelloSync/src/list'
 let g:netrw_dirhist_5='/home/steven/Projects/WekanTrelloSync/src/board'
 let g:netrw_dirhist_6='/home/steven/Projects/ccs_v3/public'
+let g:netrw_dirhist_7='/home/steven/dotfiles/TMUX/build'
