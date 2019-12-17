@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/python3
 
 import os
 import sys
@@ -26,33 +26,33 @@ def readFilelist():
 def link():
     for target in targets:
         filename = target.split("/")[-1]
-        print "Linking: " + target
+        print("Linking: " + target)
 
         try:
             os.rename(target, target+BACKUP_EXTENSION)
         except Exception as e:
-            print "An error " + str(e) + " ocurred when backing up " + target
-            if raw_input("Continue? (y/n): ").rstrip() == "y": pass
+            print("An error " + str(e) + " ocurred when backing up " + target)
+            if input("Continue? (y/n): ").rstrip() == "y": pass
             else: exit(1)
 
         # Attempt to link
         try:
             os.symlink(PWD+filename, target)
         except Exception as e:
-            print "An error " + str(e) + " ocurred when attempting to symlink"
+            print("An error " + str(e) + " ocurred when attempting to symlink")
 
 
 def unlink():
     for target in targets:
         filename = target.split("/")[-1]
-        print "Unlinking: " + target
+        print("Unlinking: " + target)
 
         if not os.path.exists(target+BACKUP_EXTENSION):
-            print "Target backup does not exist, skipping unlinking"
+            print("Target backup does not exist, skipping unlinking")
             continue
 
         if not os.path.islink(target):
-            print "Target is not a symlink, skipping unlinking"
+            print("Target is not a symlink, skipping unlinking")
             continue
 
         os.rename(target+BACKUP_EXTENSION, target)
@@ -60,7 +60,7 @@ def unlink():
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print "Need to specify link or unlink"
+        print("Need to specify link or unlink")
         exit(0)
 
     readFilelist()
