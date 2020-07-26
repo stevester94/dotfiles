@@ -54,9 +54,4 @@ fi
 # This apparently is bashrc satan, cross check with the bashrc at work
 export TERM=xterm-256color
 
-# Ripped from https://coderwall.com/p/fasnya/add-git-branch-name-to-bash-prompt
-parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-
-PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(parse_git_branch)\[\033[00m\] $ "
+[[ $- = *i* ]] && source ~/dotfiles/liquidprompt/liquidprompt
