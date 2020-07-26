@@ -1,3 +1,4 @@
 ~/.vim
 ~/.vimrc
 ~/.bashrc
+/home/steven/.tmux.conf
