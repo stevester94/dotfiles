@@ -1,6 +1,7 @@
 #! /bin/bash
 git config --global user.email "stevester94@gmail.com"
 git config --global user.name "Steven Mackey"
+git config --global init.defaultBranch master
 
 echo "Now configuring git credential storage"
 echo "Configure git to store credentials forever in clear text: F"
