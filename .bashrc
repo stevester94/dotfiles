@@ -55,3 +55,6 @@ fi
 export TERM=xterm-256color
 
 [[ $- = *i* ]] && source ~/dotfiles/liquidprompt/liquidprompt
+
+
+alias fix_keychron='echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode'
