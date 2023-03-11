@@ -109,4 +109,5 @@ _return_code() {
 PS1='`_return_code`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] `_git_info`\$ ' # Acceptable
 
 # Custom stuff
+PATH=$PATH:~/dotfiles/bins
 alias fix_keychron='echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode'
