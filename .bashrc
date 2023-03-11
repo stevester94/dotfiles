@@ -61,51 +61,40 @@ GREEN="\e[32m"
 ENDCOLOR="\e[0m"
 
 _git_info() {
-        git rev-parse --is-inside-work-tree &> /dev/null
+    git rev-parse --is-inside-work-tree &> /dev/null
 
-        if [[ $? == 0 ]]; then
-                br_name=$(git branch --show-current)
+    if [[ $? == 0 ]]; then
+        br_name=$(git branch --show-current)
 
-                # Get number of insertions and deletions
-                s=$( git diff --shortstat 2>/dev/null )
-                reg='([0-9]) insertion'
-                if [[  $s =~ $reg ]]; then
-                        _insertions="${GREEN}${BASH_REMATCH[1]}${ENDCOLOR}"
-                else
-                        _insertions=""
-                fi
-
-                reg='([0-9]) deletion'
-                if [[  $s =~ $reg ]]; then
-                        _deletions="${RED}${BASH_REMATCH[1]}${ENDCOLOR}"
-                else
-                        _deletions=""
-                fi
-
-                printf \($br_name
-                if [[ ! -z "$_insertions" ]]; then
-                        printf " $_insertions"
-                fi
-
-
-                if [[ ! -z "$_deletions" ]]; then
-                        printf " $_deletions"
-                fi
-
-                printf ') '
+        # Get number of insertions and deletions
+        s=$( git diff --shortstat 2>/dev/null )
+        reg='([0-9]) insertion'
+        if [[  $s =~ $reg ]]; then
+                _insertions="${GREEN}${BASH_REMATCH[1]}${ENDCOLOR}"
         else
-                echo ""
+                _insertions=""
         fi
-}
 
-_test() {
-        git rev-parse --is-inside-work-tree &> /dev/null
-
-        if [[ $? == 0 ]]; then
-                echo "InRepo"
+        reg='([0-9]) deletion'
+        if [[  $s =~ $reg ]]; then
+                _deletions="${RED}${BASH_REMATCH[1]}${ENDCOLOR}"
         else
-                echo "Not"
+                _deletions=""
         fi
+
+        printf \($br_name
+        if [[ ! -z "$_insertions" ]]; then
+                printf " $_insertions"
+        fi
+
+        if [[ ! -z "$_deletions" ]]; then
+                printf " $_deletions"
+        fi
+
+        printf ') '
+    else
+        echo ""
+    fi
 }
 
 _return_code() {
