@@ -54,7 +54,70 @@ fi
 # This apparently is bashrc satan, cross check with the bashrc at work
 export TERM=xterm-256color
 
-[[ $- = *i* ]] && source ~/dotfiles/liquidprompt/liquidprompt
+# Prompt stuff
+LIGHT_BLUE="\e[94m"
+RED="\e[31m"
+GREEN="\e[32m"
+ENDCOLOR="\e[0m"
+
+_git_info() {
+        git rev-parse --is-inside-work-tree &> /dev/null
+
+        if [[ $? == 0 ]]; then
+                br_name=$(git branch --show-current)
+
+                # Get number of insertions and deletions
+                s=$( git diff --shortstat 2>/dev/null )
+                reg='([0-9]) insertion'
+                if [[  $s =~ $reg ]]; then
+                        _insertions="${GREEN}${BASH_REMATCH[1]}${ENDCOLOR}"
+                else
+                        _insertions=""
+                fi
+
+                reg='([0-9]) deletion'
+                if [[  $s =~ $reg ]]; then
+                        _deletions="${RED}${BASH_REMATCH[1]}${ENDCOLOR}"
+                else
+                        _deletions=""
+                fi
+
+                printf \($br_name
+                if [[ ! -z "$_insertions" ]]; then
+                        printf " $_insertions"
+                fi
 
 
+                if [[ ! -z "$_deletions" ]]; then
+                        printf " $_deletions"
+                fi
+
+                printf ') '
+        else
+                echo ""
+        fi
+}
+
+_test() {
+        git rev-parse --is-inside-work-tree &> /dev/null
+
+        if [[ $? == 0 ]]; then
+                echo "InRepo"
+        else
+                echo "Not"
+        fi
+}
+
+_return_code() {
+        code=$?
+        if [[ $code == 0 ]]; then
+                printf "${LIGHT_BLUE}0${ENDCOLOR} "
+        else
+                printf "${RED}$code${ENDCOLOR} "
+        fi
+}
+
+PS1='`_return_code`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] `_git_info`\$ ' # Acceptable
+
+# Custom stuff
 alias fix_keychron='echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode'
