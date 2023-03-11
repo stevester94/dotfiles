@@ -11,3 +11,4 @@ command Dn  :set nonumber
 command En  :set number
 colorscheme molokai
 :set formatoptions-=cro
+let g:airline_theme='minimalist'
