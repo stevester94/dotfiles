@@ -60,6 +60,7 @@ RED="\e[31m"
 GREEN="\e[32m"
 ENDCOLOR="\e[0m"
 
+
 _git_info() {
     git rev-parse --is-inside-work-tree &> /dev/null
 
@@ -106,7 +107,18 @@ _return_code() {
         fi
 }
 
-PS1='`_return_code`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] `_git_info`\$ ' # Acceptable
+# Non-printing color control sequences are enclosed in \[\033 .... m\]
+# https://askubuntu.com/questions/831971/what-type-of-sequences-are-escape-sequences-starting-with-033
+# <Background code>;<foreground code>
+uC="\[\033[01;32m\]" # User color
+uC="\[\033[02;37m\]" # ACtually kinda nice light grey
+pC="\[\033[01;34m\]" # Path color
+pC="\[\033[33;02m\]" 
+sC=$LIGHT_BLUE # Status code color
+eC="\[\033[00m\]" # End color
+
+#PS1='`_return_code`\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] `_git_info`\$ ' # Acceptable
+PS1="`_return_code`${uC}\u@\h${eC}:${pC}\w${eC} `_git_info`\$ " # Acceptable
 
 # Custom stuff
 PATH=$PATH:~/dotfiles/bins
