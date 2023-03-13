@@ -55,11 +55,21 @@ fi
 export TERM=xterm-256color
 
 # Prompt stuff
-LIGHT_BLUE="\e[94m"
-RED="\e[31m"
-GREEN="\e[32m"
-ENDCOLOR="\e[0m"
+# Colors taken from https://unix.stackexchange.com/questions/269077/tput-setaf-color-table-how-to-determine-color-codes
+LIGHT_BLUE=$(tput setaf 111)
+RED=$(tput setaf 196)
+GREEN=$(tput setaf 112)
+LIGHT_GREY=$(tput setaf 250)
+LIGHT_ORANGE=$(tput setaf 214)
+DARK_ORANGE=$(tput setaf 202)
+RESET_COLOR=$(tput sgr0)
 
+uC=$LIGHT_GREY
+pC=$DARK_ORANGE
+sC=$LIGHT_BLUE
+eC=$RESET_COLOR
+
+PS1='`_return_code`\[${uC}\]\u@\h\[${eC}\]:\[${pC}\]\w\[${eC}\] `_git_info`\$ ' # Acceptable
 
 _git_info() {
     git rev-parse --is-inside-work-tree &> /dev/null
@@ -71,14 +81,14 @@ _git_info() {
         s=$( git diff --shortstat 2>/dev/null )
         reg='([0-9]) insertion'
         if [[  $s =~ $reg ]]; then
-                _insertions="${GREEN}${BASH_REMATCH[1]}${ENDCOLOR}"
+                _insertions="${GREEN}${BASH_REMATCH[1]}${RESET_COLOR}"
         else
                 _insertions=""
         fi
 
         reg='([0-9]) deletion'
         if [[  $s =~ $reg ]]; then
-                _deletions="${RED}${BASH_REMATCH[1]}${ENDCOLOR}"
+                _deletions="${RED}${BASH_REMATCH[1]}${RESET_COLOR}"
         else
                 _deletions=""
         fi
@@ -98,27 +108,22 @@ _git_info() {
     fi
 }
 
+good_status=$LIGHT_GREY
+bad_statos=$RED
 _return_code() {
         code=$?
         if [[ $code == 0 ]]; then
-                printf "${LIGHT_BLUE}0${ENDCOLOR} "
+                printf "${good_status}0${RESET_COLOR} "
         else
-                printf "${RED}$code${ENDCOLOR} "
+                printf "${bad_statos}$code${RESET_COLOR} "
         fi
 }
 
 # Non-printing color control sequences are enclosed in \[\033 .... m\]
 # https://askubuntu.com/questions/831971/what-type-of-sequences-are-escape-sequences-starting-with-033
 # <Background code>;<foreground code>
-uC="\[\033[01;32m\]" # User color
-uC="\[\033[02;37m\]" # ACtually kinda nice light grey
-pC="\[\033[01;34m\]" # Path color
-pC="\[\033[33;02m\]" 
-sC=$LIGHT_BLUE # Status code color
-eC="\[\033[00m\]" # End color
 
 #PS1='`_return_code`\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] `_git_info`\$ ' # Acceptable
-PS1="`_return_code`${uC}\u@\h${eC}:${pC}\w${eC} `_git_info`\$ " # Acceptable
 
 # Custom stuff
 PATH=$PATH:~/dotfiles/bins
