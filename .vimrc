@@ -12,3 +12,7 @@ command En  :set number
 colorscheme molokai
 :set formatoptions-=cro
 let g:airline_theme='minimalist'
+
+" Will only search case sensitive if there is a capital letter in the search
+" string
+:set smartcase 
