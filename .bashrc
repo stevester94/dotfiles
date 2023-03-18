@@ -56,20 +56,23 @@ export TERM=xterm-256color
 
 # Prompt stuff
 # Colors taken from https://unix.stackexchange.com/questions/269077/tput-setaf-color-table-how-to-determine-color-codes
-LIGHT_BLUE=$(tput setaf 111)
-RED=$(tput setaf 196)
-GREEN=$(tput setaf 112)
-LIGHT_GREY=$(tput setaf 250)
-LIGHT_ORANGE=$(tput setaf 214)
-DARK_ORANGE=$(tput setaf 202)
-RESET_COLOR=$(tput sgr0)
+# I honestly don't get what the deal is with these escape codes. If you remove that extra printf then they get printed as literals
+# It's something to do with how strings are escaped, but for the life of me I don't get it.
+# Oh well, these commands are only executed when a new shell is opened so its not the end of the world.
+LIGHT_BLUE=$( printf "\001$(tput setaf 111)\002" )
+RED=$( printf "\001$(tput setaf 196)\002" )
+GREEN=$( printf "\001$(tput setaf 112)\002" )
+LIGHT_GREY=$( printf "\001$(tput setaf 250)\002" )
+LIGHT_ORANGE=$( printf "\001$(tput setaf 214)\002" )
+DARK_ORANGE=$( printf "\001$(tput setaf 202)\002" )
+RESET_COLOR=$( printf "\001$(tput sgr0)\002" )
 
 uC=$LIGHT_GREY
 pC=$DARK_ORANGE
 sC=$LIGHT_BLUE
 eC=$RESET_COLOR
 
-PS1='`_return_code`\[${uC}\]\u@\h\[${eC}\]:\[${pC}\]\w\[${eC}\] `_git_info`\$ ' # Acceptable
+PS1='`_return_code`${uC}\u@\h${eC}:${pC}\w${eC} `_git_info`\$ ' # Acceptable
 
 _git_info() {
     git rev-parse --is-inside-work-tree &> /dev/null
@@ -109,21 +112,15 @@ _git_info() {
 }
 
 good_status=$LIGHT_GREY
-bad_statos=$RED
+bad_status=$RED
 _return_code() {
         code=$?
         if [[ $code == 0 ]]; then
                 printf "${good_status}0${RESET_COLOR} "
         else
-                printf "${bad_statos}$code${RESET_COLOR} "
+                printf "${bad_status}$code${RESET_COLOR} "
         fi
 }
-
-# Non-printing color control sequences are enclosed in \[\033 .... m\]
-# https://askubuntu.com/questions/831971/what-type-of-sequences-are-escape-sequences-starting-with-033
-# <Background code>;<foreground code>
-
-#PS1='`_return_code`\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] `_git_info`\$ ' # Acceptable
 
 # Custom stuff
 PATH=$PATH:~/dotfiles/bins
