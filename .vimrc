@@ -1,7 +1,7 @@
 set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=3
+set softtabstop=3
+set shiftwidth=3
 syntax on
 set number
 set hlsearch
@@ -15,4 +15,5 @@ let g:airline_theme='minimalist'
 
 " Will only search case sensitive if there is a capital letter in the search
 " string
+:set ignorecase "Necessary in conjunction with smartcase
 :set smartcase 
