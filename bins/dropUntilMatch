@@ -1,0 +1,21 @@
+#! /usr/bin/env python3
+
+import re
+import sys
+from datetime import datetime
+
+
+if sys.argv[2] == "-":
+   body = sys.stdin.read()
+else:
+   with open(sys.argv[2], "r") as f:
+      body = f.read()
+
+
+body = body.split("\n")
+
+match = sys.argv[1]
+matched = False
+for line in body:
+   if not matched and match in line: matched = True
+   if matched: print(line)
