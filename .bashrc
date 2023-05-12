@@ -128,3 +128,14 @@ unset SSH_ASKPASS
 # Custom stuff
 PATH=$PATH:~/dotfiles/bins
 alias fix_keychron='echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode'
+
+NO_PROXY=$NO_PROXY,192.168.49.2,192.168.49.3,192.168.49.4 # Don't use proxy for the cluster node IPs
+#alias kubectl='minikube kubectl --'
+#alias kubectls='kubectl --namespace kube-system'
+source <(kubectl completion bash)
+
+if which k3d > /dev/null 2>/dev/null; then
+   source <(k3d completion bash)
+fi
+
+

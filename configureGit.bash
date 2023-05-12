@@ -1,6 +1,6 @@
 #! /bin/bash
-git config --global user.email "stevester94@gmail.com"
-git config --global user.name "Steven Mackey"
+git config --global user.email "steve.mackey@ll.mit.edu"
+git config --global user.name "Steve Mackey"
 git config --global init.defaultBranch master
 git config --global diff.tool vimdiff
 git config --global difftool.prompt false
