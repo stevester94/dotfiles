@@ -1,2 +1,5 @@
 backups
 .vim/.netrwhist
+
+work/**
+!work/.gitkeep
