@@ -9,6 +9,7 @@ syntax match true "\v\ctrue"
 syntax match false "\v\cfalse"
 syntax match info "\v\cinfo"
 syntax match debug "\v\cdebug"
+syntax match warn "\v\cwarn(ing)?"
 
 highlight error ctermfg=Red ctermbg=NONE guifg=#FF0000 guibg=NONE
 highlight starting ctermfg=Blue ctermbg=NONE guifg=#FF0000 guibg=NONE
@@ -17,6 +18,7 @@ highlight not ctermfg=yellow ctermbg=NONE guifg=#FF0000 guibg=NONE
 highlight true ctermfg=Green ctermbg=NONE guifg=#FF0000 guibg=NONE
 highlight false ctermfg=Red ctermbg=NONE guifg=#FF0000 guibg=NONE
 highlight info ctermfg=blue ctermbg=NONE guifg=#FF0000 guibg=NONE
-highlight debug ctermfg=yellow ctermbg=NONE guifg=#FF0000 guibg=NONE
+highlight debug ctermfg=5 ctermbg=NONE guifg=#FF0000 guibg=NONE
+highlight warn ctermfg=yellow ctermbg=NONE guifg=#FF0000 guibg=NONE
 
 let b:current_syntax = 'slog'
