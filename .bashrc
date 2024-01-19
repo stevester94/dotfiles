@@ -59,20 +59,28 @@ export TERM=xterm-256color
 # I honestly don't get what the deal is with these escape codes. If you remove that extra printf then they get printed as literals
 # It's something to do with how strings are escaped, but for the life of me I don't get it.
 # Oh well, these commands are only executed when a new shell is opened so its not the end of the world.
-LIGHT_BLUE=$( printf "\001$(tput setaf 111)\002" )
-RED=$( printf "\001$(tput setaf 196)\002" )
-GREEN=$( printf "\001$(tput setaf 112)\002" )
-LIGHT_GREY=$( printf "\001$(tput setaf 250)\002" )
-LIGHT_ORANGE=$( printf "\001$(tput setaf 214)\002" )
-DARK_ORANGE=$( printf "\001$(tput setaf 202)\002" )
-RESET_COLOR=$( printf "\001$(tput sgr0)\002" )
+LIGHT_BLUE=`printf "\001$(tput setaf 111)\002"`
+RED=`printf "\001$(tput setaf 196)\002"`
+GREEN=` printf "\001$(tput setaf 112)\002"`
+LIGHT_GREY=`printf "\001$(tput setaf 250)\002"`
+LIGHT_ORANGE=`printf "\001$(tput setaf 214)\002"`
+DARK_ORANGE=`printf "\001$(tput setaf 202)\002"`
+LIGHT_GREEN=`printf "\001$(tput setaf 082)\002"`
+BLUE=`printf "\001$(tput setaf 020)\002"`
+RESET_COLOR=`printf "\001$(tput sgr0)\002"`
 
-uC=$LIGHT_GREY
+uC=$LIGHT_GREY # User and host
 pC=$DARK_ORANGE
 sC=$LIGHT_BLUE
 eC=$RESET_COLOR
 
-PS1='`_return_code`${uC}\u@\h${eC}:${pC}\w${eC} `_git_info`\$ ' # Acceptable
+source ~/dotfiles/hostcolors.sh
+if test -f ~/dotfiles/work/hostcolors.sh ; then
+   source ~/dotfiles/work/hostcolors.sh
+fi
+hC=`getHostColor`
+
+PS1='`_return_code`${uC}\u@${eC}${hC}\h${eC}:${pC}\w${eC} `_git_info`\$ ' # Acceptable
 
 _git_info() {
     git rev-parse --is-inside-work-tree &> /dev/null
