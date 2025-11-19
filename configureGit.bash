@@ -8,7 +8,7 @@ git config --global core.editor "vim"
 
 echo "Now configuring git credential storage"
 echo "Configure git to store credentials forever in clear text: F"
-echo "Configure git to store credentials for 15 minutes in a secure daemon: D"
+echo "Configure git to store credentials for 2 hours in a secure daemon: D"
 echo "Skip configuration: S"
 
 while true; do
@@ -19,7 +19,7 @@ while true; do
         break
     elif [[ $ans = D ]]; then
         echo Configuring to store in daemon
-        git config --global credential.helper cache
+        git config --global credential.helper cache --timeout=7200
         break
     elif [[ $ans = S ]]; then
         echo Skipping
