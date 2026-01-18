@@ -135,6 +135,7 @@ unset SSH_ASKPASS
 
 # Custom stuff
 PATH=$PATH:~/dotfiles/bins
+export PATH=/home/steven/.local/bin:$PATH
 alias fix_keychron='echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode'
 
 if test -f ~/dotfiles/work/workrc.sh ; then
